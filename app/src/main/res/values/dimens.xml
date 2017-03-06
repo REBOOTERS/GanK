@@ -19,4 +19,8 @@
     <dimen name="load_more_final_offset_google">100dp</dimen>
     <dimen name="load_more_drawable_size_google">36dp</dimen>
 
+    //
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+
 </resources>

@@ -6,7 +6,7 @@
                 android:layout_height="match_parent">
 
 
-    <com.yyydjk.gank.widget.avi.AVLoadingIndicatorView
+    <com.engineer.reader.widget.avi.AVLoadingIndicatorView
         android:layout_width="50dp"
         android:layout_height="60dp"
         style="@style/AVLoadingIndicatorView"

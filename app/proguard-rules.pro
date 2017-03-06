@@ -109,38 +109,38 @@
 -keep class com.aspsine.swipetoloadlayout.SwipeToLoadLayout { <init>(...); }
 
 # view AndroidManifest.xml #generated:18
--keep class com.yyydjk.gank.App { <init>(...); }
+-keep class com.engineer.reader.App { <init>(...); }
 
 # view AndroidManifest.xml #generated:25
--keep class com.yyydjk.gank.activitys.MainActivity { <init>(...); }
+-keep class com.engineer.reader.activitys.MainActivity { <init>(...); }
 
 # view res/layout/fragment_android.xml #generated:22
--keep class com.yyydjk.gank.theme.ColorListView { <init>(...); }
+-keep class com.engineer.reader.theme.ColorListView { <init>(...); }
 
 # view res/layout/activity_main.xml #generated:10
 # view res/layout/tool_bar_layout.xml #generated:2
--keep class com.yyydjk.gank.theme.ColorRelativeLayout { <init>(...); }
+-keep class com.engineer.reader.theme.ColorRelativeLayout { <init>(...); }
 
 # view res/layout/item_android.xml #generated:8
--keep class com.yyydjk.gank.theme.ColorTextView { <init>(...); }
+-keep class com.engineer.reader.theme.ColorTextView { <init>(...); }
 
 # view res/layout/activity_main.xml #generated:144
--keep class com.yyydjk.gank.theme.ColorView { <init>(...); }
+-keep class com.engineer.reader.theme.ColorView { <init>(...); }
 
 # view res/layout/activity_main.xml #generated:2
--keep class com.yyydjk.gank.widget.ResideLayout { <init>(...); }
+-keep class com.engineer.reader.widget.ResideLayout { <init>(...); }
 
 # view res/layout/layout_google_hook_header.xml #generated:9
--keep class com.yyydjk.gank.widget.refresh.GoogleCircleProgressView { <init>(...); }
+-keep class com.engineer.reader.widget.refresh.GoogleCircleProgressView { <init>(...); }
 
 # view res/layout/layout_google_footer.xml #generated:2
--keep class com.yyydjk.gank.widget.refresh.footer.GoogleLoadMoreFooterView { <init>(...); }
+-keep class com.engineer.reader.widget.refresh.footer.GoogleLoadMoreFooterView { <init>(...); }
 
 # view res/layout/layout_google_hook_header.xml #generated:2
--keep class com.yyydjk.gank.widget.refresh.header.GoogleCircleHookRefreshHeaderView { <init>(...); }
+-keep class com.engineer.reader.widget.refresh.header.GoogleCircleHookRefreshHeaderView { <init>(...); }
 
 # view res/layout/layout_google_header.xml #generated:2
--keep class com.yyydjk.gank.widget.refresh.header.GoogleRefreshHeaderView { <init>(...); }
+-keep class com.engineer.reader.widget.refresh.header.GoogleRefreshHeaderView { <init>(...); }
 
 # Glide specific rules #
 # https://github.com/bumptech/glide
@@ -197,7 +197,7 @@
 -dontwarn jp.co.cyberagent.android.gpuimage.**
 -dontwarn net.sourceforge.pinyin4j.**
 
--keep class com.yyydjk.gank.beans.** { *; }
+-keep class com.engineer.reader.beans.** { *; }
 -keepclassmembers class * { *** onEvent(...); }
 
 ## New rules for EventBus 3.0.x ##

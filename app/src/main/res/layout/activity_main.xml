@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.yyydjk.gank.widget.ResideLayout android:id="@+id/resideLayout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activitys.MainActivity">
+<com.engineer.reader.widget.ResideLayout android:id="@+id/resideLayout"
+                                         xmlns:android="http://schemas.android.com/apk/res/android"
+                                         xmlns:tools="http://schemas.android.com/tools"
+                                         android:layout_width="match_parent"
+                                         android:layout_height="match_parent"
+                                         tools:context=".activitys.MainActivity">
 
-    <com.yyydjk.gank.theme.ColorRelativeLayout
+    <com.engineer.reader.theme.ColorRelativeLayout
         android:id="@+id/menu"
         android:layout_width="match_parent"
         android:background="?attr/menuBackground"
@@ -134,14 +134,14 @@
 
         </LinearLayout>
 
-    </com.yyydjk.gank.theme.ColorRelativeLayout>
+    </com.engineer.reader.theme.ColorRelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.yyydjk.gank.theme.ColorView
+        <com.engineer.reader.theme.ColorView
             android:id="@+id/status_bar"
             android:layout_width="match_parent"
             android:layout_height="20dp"
@@ -158,4 +158,4 @@
     </LinearLayout>
 
 
-</com.yyydjk.gank.widget.ResideLayout>
+</com.engineer.reader.widget.ResideLayout>

@@ -18,7 +18,7 @@
         android:id="@id/swipe_refresh_header"
         layout="@layout/layout_google_hook_header" />
 
-    <com.yyydjk.gank.theme.ColorListView
+    <com.engineer.reader.theme.ColorListView
         android:id="@+id/swipe_target"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

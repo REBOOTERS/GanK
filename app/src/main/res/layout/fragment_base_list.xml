@@ -1,4 +1,4 @@
-<com.yyydjk.gank.widget.MultipleStatusView
+<com.engineer.reader.widget.MultipleStatusView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -32,4 +32,4 @@
             layout="@layout/layout_google_footer"/>
     </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
 
-</com.yyydjk.gank.widget.MultipleStatusView>
+</com.engineer.reader.widget.MultipleStatusView>
