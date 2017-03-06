@@ -49,9 +49,6 @@ public class AllFragment extends BaseListFragment<GanHuo> {
     }
 
 
-    @Subscribe
-    public void onEvent(SkinChangeEvent event){
-        adapter.notifyDataSetChanged();
 
     @Override
     public void fillValue(ViewHolder holder, GanHuo ganHuo, int position) {
