@@ -10,12 +10,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.engineer.reader.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GankFragment extends Fragment {
 
@@ -25,21 +27,21 @@ public class GankFragment extends Fragment {
 
     private View rootView;
     private Context mContext;
+    private List<Fragment> fragments;
+    private List<String> titles;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_gank, container, false);
-        mContext=getActivity();
+        mContext = getActivity();
+        initDatas();
         initViews();
         return rootView;
     }
 
 
-
     protected void initViews() {
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-//        mContext.setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
@@ -49,6 +51,7 @@ public class GankFragment extends Fragment {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setupWithViewPager(mViewPager);
 
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
@@ -59,11 +62,8 @@ public class GankFragment extends Fragment {
                         .setAction("Action", null).show();
             }
         });
+        mViewPager.setCurrentItem(0);
     }
-
-
-
-
 
 
     /**
@@ -80,27 +80,52 @@ public class GankFragment extends Fragment {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return new AllFragment();
+            switch (position) {
+                case 0:
+                    return new AllFragment();
+                case 1:
+                    return new FuLiFragment();
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                    return CommonFragment.newInstance(titles.get(position));
+                default:
+                    return null;
+            }
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return titles.size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "SECTION 1";
-                case 1:
-                    return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
-            }
-            return null;
+            return titles.get(position);
         }
+    }
+
+    private void initDatas() {
+        fragments = new ArrayList<>();
+        fragments.add(new AllFragment());
+        fragments.add(new FuLiFragment());
+        fragments.add(new CommonFragment());
+
+        titles = new ArrayList<>();
+        titles.add("干货集中营");
+        titles.add("福利");
+        titles.add("Android");
+        titles.add("iOS");
+        titles.add("休息视频");
+        titles.add("前端");
+        titles.add("拓展资源");
+        titles.add("App");
+        titles.add("瞎推荐");
     }
 
 
