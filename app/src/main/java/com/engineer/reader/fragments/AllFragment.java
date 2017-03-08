@@ -1,31 +1,27 @@
 package com.engineer.reader.fragments;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mikepenz.fontawesome_typeface_library.FontAwesome;
-import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.iconics.typeface.IIcon;
-import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
-import com.squareup.picasso.Picasso;
 import com.engineer.reader.R;
+import com.engineer.reader.activitys.WebViewActivity;
 import com.engineer.reader.base.BaseListFragment;
 import com.engineer.reader.beans.GanHuo;
 import com.engineer.reader.common.recyclerview.base.ViewHolder;
 import com.engineer.reader.event.SkinChangeEvent;
 import com.engineer.reader.utils.ThemeUtils;
+import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-
-import me.xiaopan.android.content.res.DimenUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,9 +45,8 @@ public class AllFragment extends BaseListFragment<GanHuo> {
     }
 
 
-
     @Override
-    public void fillValue(ViewHolder holder, GanHuo ganHuo, int position) {
+    public void fillValue(ViewHolder holder, final GanHuo ganHuo, int position) {
         ImageView mImage = holder.getView(R.id.image);
         TextView mText = holder.getView(R.id.text);
         if (ganHuo.getType().equals("福利")) {
@@ -61,48 +56,27 @@ public class AllFragment extends BaseListFragment<GanHuo> {
         } else {
             mImage.setVisibility(View.GONE);
             mText.setVisibility(View.VISIBLE);
-            mText.setLinkTextColor(ThemeUtils.getThemeColor(getActivity(),R.attr.colorPrimary));
-            mText.setText(Html.fromHtml("<a href=\""
-                    + ganHuo.getUrl() + "\">"
-                    + ganHuo.getDesc() + "</a>"
-                    + "[" + ganHuo.getWho() + "]"));
+            mText.setLinkTextColor(ThemeUtils.getThemeColor(getActivity(), R.attr.colorPrimary));
+            mText.setText(ganHuo.getDesc());
             mText.setMovementMethod(LinkMovementMethod.getInstance());
-            switch (ganHuo.getType()) {
-                case "Android":
-                    setIconDrawable(mText, MaterialDesignIconic.Icon.gmi_android);
-                    break;
-                case "iOS":
-                    setIconDrawable(mText, MaterialDesignIconic.Icon.gmi_apple);
-                    break;
-                case "休息视频":
-                    setIconDrawable(mText, MaterialDesignIconic.Icon.gmi_collection_video);
-                    break;
-                case "前端":
-                    setIconDrawable(mText, MaterialDesignIconic.Icon.gmi_language_javascript);
-                    break;
-                case "拓展资源":
-                    setIconDrawable(mText, FontAwesome.Icon.faw_location_arrow);
-                    break;
-                case "App":
-                    setIconDrawable(mText, MaterialDesignIconic.Icon.gmi_apps);
-                    break;
-                case "瞎推荐":
-                    setIconDrawable(mText, MaterialDesignIconic.Icon.gmi_more);
-                    break;
 
-            }
+            mText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), WebViewActivity.class);
+                    intent.putExtra("url", ganHuo.getUrl());
+                    intent.putExtra("title", ganHuo.getDesc());
+                    getContext().startActivity(intent);
+                    Activity mContext = (Activity) getContext();
+                    mContext.overridePendingTransition(R.anim.fade_in, 0);
+                }
+            });
+
+
         }
 
     }
 
-    private void setIconDrawable(TextView view, IIcon icon) {
-        view.setCompoundDrawablesWithIntrinsicBounds(new IconicsDrawable(getActivity())
-                        .icon(icon)
-                        .color(ThemeUtils.getThemeColor(getActivity(), R.attr.colorPrimary))
-                        .sizeDp(14),
-                null, null, null);
-        view.setCompoundDrawablePadding(DimenUtils.dp2px(getActivity(), 5));
-    }
 
     @Override
     protected String getUrl() {
@@ -112,7 +86,7 @@ public class AllFragment extends BaseListFragment<GanHuo> {
     }
 
     @Subscribe
-    public void onEvent(SkinChangeEvent event){
+    public void onEvent(SkinChangeEvent event) {
         headerAndFooterWrapper.notifyDataSetChanged();
 
     }

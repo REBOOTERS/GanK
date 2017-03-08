@@ -5,20 +5,21 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:fitsSystemWindows="false"
     tools:context="com.engineer.reader.fragments.GankFragment">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/appbar_padding_top"
         android:theme="@style/AppTheme.AppBarOverlay">
 
 
 
         <android.support.design.widget.TabLayout
             app:layout_scrollFlags="scroll|enterAlways"
+            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorHeight="2dp"
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

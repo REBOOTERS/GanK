@@ -13,7 +13,6 @@ import com.engineer.reader.theme.Theme;
 import com.engineer.reader.utils.PreUtils;
 
 /**
- * Created by dongjunkun on 2016/2/2.
  */
 public class BaseActivity extends AppCompatActivity {
 
@@ -22,7 +21,7 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         onPreCreate();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            setTranslucentStatus(true);
+//            setTranslucentStatus(true);
         }
     }
 

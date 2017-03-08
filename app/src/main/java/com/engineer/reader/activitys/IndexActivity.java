@@ -6,16 +6,14 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.engineer.reader.R;
+import com.engineer.reader.base.BaseActivity;
 import com.engineer.reader.fragments.GankFragment;
 
-public class IndexActivity extends AppCompatActivity {
+public class IndexActivity extends BaseActivity {
 
-    private TextView mTextMessage;
 
     private FragmentManager mFragmentManager;
     private String currentFragmentTag;
@@ -25,10 +23,10 @@ public class IndexActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
-        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         mFragmentManager = getSupportFragmentManager();
+        switchFragment("index");
     }
 
     public void switchFragment(String name) {
@@ -53,6 +51,7 @@ public class IndexActivity extends AppCompatActivity {
 //                    foundFragment = DoubanFragment.newInstance(name, name);
                     break;
                 case "center":
+
                     break;
             }
 
@@ -83,13 +82,14 @@ public class IndexActivity extends AppCompatActivity {
                     switchFragment("douban");
                     return true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+
                     return true;
             }
             return false;
         }
 
     };
+
 
 
 }
