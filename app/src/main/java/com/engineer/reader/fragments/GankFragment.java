@@ -26,7 +26,6 @@ public class GankFragment extends Fragment {
 
     private View rootView;
     private Context mContext;
-    private List<Fragment> fragments;
     private List<String> titles;
 
     @Nullable
@@ -51,7 +50,7 @@ public class GankFragment extends Fragment {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(mViewPager);
 
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
@@ -77,21 +76,13 @@ public class GankFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
                 case 0:
-                    return new AllFragment();
                 case 1:
-                    return new FuLiFragment();
                 case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
                     return CommonFragment.newInstance(titles.get(position));
+                case 3:
+                    return new FuLiFragment();
                 default:
                     return null;
             }
@@ -99,7 +90,6 @@ public class GankFragment extends Fragment {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return titles.size();
         }
 
@@ -110,21 +100,11 @@ public class GankFragment extends Fragment {
     }
 
     private void initDatas() {
-        fragments = new ArrayList<>();
-        fragments.add(new AllFragment());
-        fragments.add(new FuLiFragment());
-        fragments.add(new CommonFragment());
-
         titles = new ArrayList<>();
-        titles.add("干货集中营");
-        titles.add("福利");
         titles.add("Android");
         titles.add("iOS");
-        titles.add("休息视频");
         titles.add("前端");
-        titles.add("拓展资源");
-        titles.add("App");
-        titles.add("瞎推荐");
+        titles.add("福利");
     }
 
 

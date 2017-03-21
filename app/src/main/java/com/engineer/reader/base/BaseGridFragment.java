@@ -2,8 +2,8 @@ package com.engineer.reader.base;
 
 
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
@@ -34,7 +34,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public abstract class BaseListFragment<T> extends BaseFragment implements OnRefreshListener, OnLoadMoreListener {
+public abstract class BaseGridFragment<T> extends BaseFragment implements OnRefreshListener, OnLoadMoreListener {
 
     @Bind(R.id.swipe_target)
     protected RecyclerView mRecyclerView;
@@ -53,7 +53,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements OnRefr
 
     protected OffsetDecoration decoration = new OffsetDecoration();
 
-    public BaseListFragment() {
+    public BaseGridFragment() {
         type = getSuperclassTypeParameter(getClass());
     }
 
@@ -101,7 +101,11 @@ public abstract class BaseListFragment<T> extends BaseFragment implements OnRefr
                 fillValue(holder, t, position);
             }
         };
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        StaggeredGridLayoutManager mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+//        mStaggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+        //fix issue #52 https://github.com/codeestX/GeekNews/issues/52
+        mStaggeredGridLayoutManager.setItemPrefetchEnabled(false);
+        mRecyclerView.setLayoutManager(mStaggeredGridLayoutManager);
         mRecyclerView.setHasFixedSize(false);
         headerAndFooterWrapper = new HeaderAndFooterWrapper(commonAdapter);
         mRecyclerView.setAdapter(headerAndFooterWrapper);

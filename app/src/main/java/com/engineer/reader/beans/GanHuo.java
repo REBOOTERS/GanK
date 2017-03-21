@@ -1,6 +1,7 @@
 package com.engineer.reader.beans;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by dongjunkun on 2016/2/1.
@@ -29,6 +30,15 @@ public class GanHuo implements Serializable {
     private String createdAt;
     private String updatedAt;
     private int height;
+    private List<String> images;
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
 
     public void setWho(String who) {
         this.who = who;

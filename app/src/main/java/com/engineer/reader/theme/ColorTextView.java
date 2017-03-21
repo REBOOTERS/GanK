@@ -2,6 +2,7 @@ package com.engineer.reader.theme;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 /**
  * Created by chengli on 15/6/8.
  */
-public class ColorTextView extends TextView implements ColorUiInterface {
+public class ColorTextView extends AppCompatTextView implements ColorUiInterface {
 
     private int attr_drawable = -1;
     private int attr_textAppearance = -1;

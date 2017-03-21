@@ -6,15 +6,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
+import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.engineer.reader.R;
 import com.engineer.reader.activitys.WebViewActivity;
 import com.engineer.reader.base.BaseListFragment;
 import com.engineer.reader.beans.GanHuo;
 import com.engineer.reader.common.recyclerview.base.ViewHolder;
+import com.engineer.reader.utils.CommonUtils;
+
+import me.xiaopan.android.widget.ToastUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,15 +57,33 @@ public class CommonFragment extends BaseListFragment<GanHuo> {
 
     @Override
     public void fillValue(final ViewHolder holder, final GanHuo ganHuo, int position) {
+        if (CommonUtils.isWeibo(ganHuo.getUrl())) {
+            return;
+        }
+
+        ImageView imageView = holder.getView(R.id.image);
+        if (ganHuo.getImages() != null && ganHuo.getImages().size() > 0) {
+            if (!TextUtils.isEmpty(ganHuo.getImages().get(0))) {
+                imageView.setVisibility(View.VISIBLE);
+                Glide.with(this).load(ganHuo.getImages().get(0)).into(imageView);
+            }
+        } else {
+            imageView.setVisibility(View.GONE);
+        }
+
+
         TextView text = holder.getView(R.id.text);
-//        text.setText(Html.fromHtml("<a href=\""
-//                + ganHuo.getUrl() + "\">"
-//                + ganHuo.getDesc() + "</a>"
-//                + "[" + ganHuo.getWho() + "]"));
         text.setText(ganHuo.getDesc());
         text.setMovementMethod(LinkMovementMethod.getInstance());
 
-        text.setOnClickListener(new View.OnClickListener() {
+        TextView who = holder.getView(R.id.who);
+        who.setText(ganHuo.getWho());
+
+        TextView time = holder.getView(R.id.updateTime);
+        time.setText(CommonUtils.formatTime(ganHuo.getPublishedAt()));
+
+        CardView shell = holder.getView(R.id.shell);
+        shell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), WebViewActivity.class);

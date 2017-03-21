@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.engineer.reader.R;
 import com.engineer.reader.base.BaseActivity;
+import com.engineer.reader.fragments.DoubanFragment;
 import com.engineer.reader.fragments.GankFragment;
 
 public class IndexActivity extends BaseActivity {
@@ -48,7 +49,7 @@ public class IndexActivity extends BaseActivity {
                     foundFragment = new GankFragment();
                     break;
                 case "douban":
-//                    foundFragment = DoubanFragment.newInstance(name, name);
+                    foundFragment = DoubanFragment.newInstance(name, name);
                     break;
                 case "center":
 
@@ -78,6 +79,8 @@ public class IndexActivity extends BaseActivity {
                 case R.id.navigation_home:
                     switchFragment("index");
                     return true;
+                case R.id.navigation_wixin:
+                    return true;
                 case R.id.navigation_dashboard:
                     switchFragment("douban");
                     return true;
@@ -89,7 +92,6 @@ public class IndexActivity extends BaseActivity {
         }
 
     };
-
 
 
 }
