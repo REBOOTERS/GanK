@@ -1,4 +1,4 @@
-package com.engineer.reader;
+package com.engineer.reader.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
-import com.engineer.reader.activitys.IndexActivity;
+import com.engineer.reader.R;
 
 public class AppStartActivity extends AppCompatActivity {
 

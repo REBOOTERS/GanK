@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 
 /**
- * Created by dongjunkun on 2015/12/7.
+ * Created by rookie on 2015/12/7.
  */
 public class MyLinearLayoutManager extends LinearLayoutManager {
     public MyLinearLayoutManager(Context context) {

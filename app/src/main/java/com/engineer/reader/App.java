@@ -7,7 +7,7 @@ import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 
 /**
- * Created by dongjunkun on 2016/2/1.
+ * Created by rookie on 2016/2/1.
  */
 public class App extends Application {
 

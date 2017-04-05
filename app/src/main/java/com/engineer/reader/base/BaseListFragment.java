@@ -1,6 +1,8 @@
 package com.engineer.reader.base;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +13,10 @@ import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.engineer.reader.R;
+import com.engineer.reader.activitys.WebViewActivity;
+import com.engineer.reader.beans.GanHuo;
 import com.engineer.reader.common.recyclerview.CommonAdapter;
+import com.engineer.reader.common.recyclerview.MultiItemTypeAdapter;
 import com.engineer.reader.common.recyclerview.base.ViewHolder;
 import com.engineer.reader.common.recyclerview.decoration.OffsetDecoration;
 import com.engineer.reader.common.recyclerview.wrapper.HeaderAndFooterWrapper;
@@ -34,7 +39,8 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public abstract class BaseListFragment<T> extends BaseFragment implements OnRefreshListener, OnLoadMoreListener {
+public abstract class BaseListFragment<T> extends BaseFragment
+        implements OnRefreshListener, OnLoadMoreListener, MultiItemTypeAdapter.OnItemClickListener {
 
     @Bind(R.id.swipe_target)
     protected RecyclerView mRecyclerView;
@@ -101,6 +107,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements OnRefr
                 fillValue(holder, t, position);
             }
         };
+        commonAdapter.setOnItemClickListener(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setHasFixedSize(false);
         headerAndFooterWrapper = new HeaderAndFooterWrapper(commonAdapter);
@@ -169,6 +176,21 @@ public abstract class BaseListFragment<T> extends BaseFragment implements OnRefr
 
     }
 
+    @Override
+    public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+        GanHuo ganHuo = (GanHuo) list.get(position);
+        Intent intent = new Intent(getContext(), WebViewActivity.class);
+        intent.putExtra("url", ganHuo.getUrl());
+        intent.putExtra("title", ganHuo.getDesc());
+        getContext().startActivity(intent);
+        Activity mContext = (Activity) getContext();
+        mContext.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
+    @Override
+    public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+        return false;
+    }
 
     @Override
     public void onDestroyView() {

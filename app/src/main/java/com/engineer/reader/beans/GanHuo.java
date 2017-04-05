@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by dongjunkun on 2016/2/1.
+ * Created by rookie on 2016/2/1.
  */
 public class GanHuo implements Serializable {
 

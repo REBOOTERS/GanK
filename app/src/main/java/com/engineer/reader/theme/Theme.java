@@ -1,7 +1,7 @@
 package com.engineer.reader.theme;
 
 /**
- * Created by dongjunkun on 2016/2/6.
+ * Created by rookie on 2016/2/6.
  */
 public enum Theme {
     Blue,

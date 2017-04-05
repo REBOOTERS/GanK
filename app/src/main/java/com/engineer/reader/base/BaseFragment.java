@@ -15,7 +15,7 @@ import java.util.UUID;
 import butterknife.ButterKnife;
 
 /**
- * Created by dongjunkun on 2016/2/2.
+ * Created by rookie on 2016/2/2.
  */
 public abstract class BaseFragment extends Fragment {
 

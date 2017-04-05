@@ -8,7 +8,7 @@ import com.engineer.reader.utils.DimenUtils;
 
 
 /**
- * Created by dongjunkun on 2016/5/27.
+ * Created by rookie on 2016/5/27.
  */
 public class OffsetDecoration extends RecyclerView.ItemDecoration {
 

@@ -1,27 +1,20 @@
 package com.engineer.reader.fragments;
 
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.engineer.reader.R;
-import com.engineer.reader.activitys.WebViewActivity;
 import com.engineer.reader.base.BaseListFragment;
 import com.engineer.reader.beans.GanHuo;
 import com.engineer.reader.common.recyclerview.base.ViewHolder;
 import com.engineer.reader.utils.CommonUtils;
-
-import me.xiaopan.android.widget.ToastUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,9 +26,7 @@ public class CommonFragment extends BaseListFragment<GanHuo> {
     private String type;
 
     public static CommonFragment newInstance(String type) {
-
         Bundle args = new Bundle();
-
         CommonFragment fragment = new CommonFragment();
         args.putString(ARG_TYPE, type);
         fragment.setArguments(args);
@@ -47,7 +38,6 @@ public class CommonFragment extends BaseListFragment<GanHuo> {
         super.onCreate(savedInstanceState);
         if (getArguments() != null)
             type = getArguments().getString(ARG_TYPE);
-
     }
 
     @Override
@@ -71,10 +61,8 @@ public class CommonFragment extends BaseListFragment<GanHuo> {
             imageView.setVisibility(View.GONE);
         }
 
-
         TextView text = holder.getView(R.id.text);
         text.setText(ganHuo.getDesc());
-        text.setMovementMethod(LinkMovementMethod.getInstance());
 
         TextView who = holder.getView(R.id.who);
         who.setText(ganHuo.getWho());
@@ -82,18 +70,6 @@ public class CommonFragment extends BaseListFragment<GanHuo> {
         TextView time = holder.getView(R.id.updateTime);
         time.setText(CommonUtils.formatTime(ganHuo.getPublishedAt()));
 
-        CardView shell = holder.getView(R.id.shell);
-        shell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), WebViewActivity.class);
-                intent.putExtra("url", ganHuo.getUrl());
-                intent.putExtra("title", ganHuo.getDesc());
-                getContext().startActivity(intent);
-                Activity mContext = (Activity) getContext();
-                mContext.overridePendingTransition(R.anim.fade_in, 0);
-            }
-        });
     }
 
     @Override
