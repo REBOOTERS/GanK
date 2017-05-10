@@ -59,9 +59,7 @@ public class IndexActivity extends BaseActivity {
 
         }
 
-        if (foundFragment == null) {
-
-        } else if (foundFragment.isAdded()) {
+        if (foundFragment.isAdded()) {
             ft.show(foundFragment);
         } else {
             ft.add(R.id.content, foundFragment, name);
