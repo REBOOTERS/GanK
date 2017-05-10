@@ -75,6 +75,9 @@ public abstract class BaseGridFragment<T> extends BaseFragment implements OnRefr
     public abstract void fillValue(ViewHolder holder, T t, int position);
 
     protected abstract String getUrl();
+    protected abstract String getDataType();
+
+    protected abstract String getPageCount();
 
 
     @Override
@@ -123,7 +126,7 @@ public abstract class BaseGridFragment<T> extends BaseFragment implements OnRefr
 
     private void getData(final boolean isRefresh) {
 
-        RequestManager.getList(tag, getUrl(), type, false, new HttpListener() {
+        RequestManager.getGankData(tag, getUrl(),getDataType(), getPageCount(), false, new HttpListener() {
             @Override
             public void onSuccess(Object o) {
                 ArrayList<T> result = (ArrayList<T>) o;

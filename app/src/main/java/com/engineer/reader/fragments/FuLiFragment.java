@@ -30,4 +30,14 @@ public class FuLiFragment extends BaseGridFragment<GanHuo> {
     protected String getUrl() {
         return "http://gank.io/api/data/福利/" + String.valueOf(pageSize) + "/" + String.valueOf(page);
     }
+
+    @Override
+    protected String getDataType() {
+        return "福利";
+    }
+
+    @Override
+    protected String getPageCount() {
+        return String.valueOf(page);
+    }
 }

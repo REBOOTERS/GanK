@@ -1,7 +1,6 @@
 package com.engineer.reader.base;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -48,6 +47,7 @@ public abstract class BaseListFragment<T> extends BaseFragment
     SwipeToLoadLayout mSwipeToLoadLayout;
     @Bind(R.id.multipleStatusView)
     MultipleStatusView mMultipleStatusView;
+
     protected CommonAdapter<T> commonAdapter;
     protected HeaderAndFooterWrapper headerAndFooterWrapper;
     protected List<T> list = new ArrayList<>();
@@ -81,6 +81,10 @@ public abstract class BaseListFragment<T> extends BaseFragment
     public abstract void fillValue(ViewHolder holder, T t, int position);
 
     protected abstract String getUrl();
+
+    protected abstract String getDataType();
+
+    protected abstract String getPageCount();
 
 
     @Override
@@ -126,7 +130,7 @@ public abstract class BaseListFragment<T> extends BaseFragment
 
     private void getData(final boolean isRefresh) {
 
-        RequestManager.getList(tag, getUrl(), type, false, new HttpListener() {
+        RequestManager.getGankData(tag, getUrl(),getDataType(), getPageCount(), false, new HttpListener() {
             @Override
             public void onSuccess(Object o) {
                 ArrayList<T> result = (ArrayList<T>) o;
@@ -149,7 +153,6 @@ public abstract class BaseListFragment<T> extends BaseFragment
                 if (mSwipeToLoadLayout.isLoadingMore()) {
                     mSwipeToLoadLayout.setLoadingMore(false);
                 }
-
             }
 
             @Override
@@ -174,7 +177,9 @@ public abstract class BaseListFragment<T> extends BaseFragment
             }
         });
 
+
     }
+
 
     @Override
     public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
@@ -183,8 +188,6 @@ public abstract class BaseListFragment<T> extends BaseFragment
         intent.putExtra("url", ganHuo.getUrl());
         intent.putExtra("title", ganHuo.getDesc());
         getContext().startActivity(intent);
-        Activity mContext = (Activity) getContext();
-        mContext.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     @Override

@@ -122,9 +122,4 @@ public class WebViewActivity extends BaseActivity {
         super.onBackPressed();
     }
 
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(0, R.anim.fade_out);
-    }
 }

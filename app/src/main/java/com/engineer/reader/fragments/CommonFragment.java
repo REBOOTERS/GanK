@@ -80,4 +80,15 @@ public class CommonFragment extends BaseListFragment<GanHuo> {
     }
 
 
+    @Override
+    protected String getDataType() {
+        return type;
+    }
+
+    @Override
+    protected String getPageCount() {
+        return String.valueOf(page);
+    }
+
+
 }
