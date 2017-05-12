@@ -1,6 +1,7 @@
 package com.engineer.reader.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.engineer.reader.R;
+import com.engineer.reader.activitys.LargeImageActivity;
 import com.engineer.reader.base.BaseListFragment;
 import com.engineer.reader.beans.GanHuo;
 import com.engineer.reader.common.recyclerview.base.ViewHolder;
@@ -56,6 +58,14 @@ public class CommonFragment extends BaseListFragment<GanHuo> {
             if (!TextUtils.isEmpty(ganHuo.getImages().get(0))) {
                 imageView.setVisibility(View.VISIBLE);
                 Glide.with(this).load(ganHuo.getImages().get(0)).into(imageView);
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent mIntent = new Intent(getContext(), LargeImageActivity.class);
+                        mIntent.putExtra("picUrl", ganHuo.getImages().get(0));
+                        getContext().startActivity(mIntent);
+                    }
+                });
             }
         } else {
             imageView.setVisibility(View.GONE);

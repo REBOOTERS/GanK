@@ -1,34 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
-    tools:context="com.engineer.reader.activitys.WebViewActivity">
+    tools:context="com.engineer.reader.activitys.LargeImageActivity">
 
     <android.support.v7.widget.Toolbar
-        app:theme="@style/AppTheme.AppBarOverlay"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         app:navigationIcon="?attr/homeAsUpIndicator"
+        app:theme="@style/AppTheme.AppBarOverlay"
         app:titleTextColor="@color/white"
         />
 
-    <ProgressBar
-        android:id="@+id/progress"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:max="100"/>
 
-    <com.tencent.smtt.sdk.WebView
-        android:id="@+id/WebView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <ImageView
+        android:layout_centerInParent="true"
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         />
 
-</LinearLayout>
+</RelativeLayout>

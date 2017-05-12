@@ -31,6 +31,8 @@
         </activity>
         <activity android:name=".activitys.IndexActivity">
         </activity>
+        <activity android:name=".activitys.LargeImageActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -1,10 +1,13 @@
 package com.engineer.reader.fragments;
 
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.engineer.reader.R;
+import com.engineer.reader.activitys.LargeImageActivity;
 import com.engineer.reader.base.BaseGridFragment;
 import com.engineer.reader.beans.GanHuo;
 import com.engineer.reader.common.recyclerview.base.ViewHolder;
@@ -21,9 +24,17 @@ public class FuLiFragment extends BaseGridFragment<GanHuo> {
     }
 
     @Override
-    public void fillValue(ViewHolder holder, GanHuo ganHuo, int position) {
+    public void fillValue(ViewHolder holder, final GanHuo ganHuo, int position) {
         ImageView mImage = holder.getView(R.id.image);
         Picasso.with(getContext()).load(ganHuo.getUrl()).placeholder(R.mipmap.avatar).into(mImage);
+        mImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent = new Intent(getContext(), LargeImageActivity.class);
+                mIntent.putExtra("picUrl", ganHuo.getUrl());
+                getContext().startActivity(mIntent);
+            }
+        });
     }
 
     @Override
