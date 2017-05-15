@@ -23,10 +23,7 @@ import com.engineer.reader.http.HttpListener;
 import com.engineer.reader.http.RequestManager;
 import com.engineer.reader.utils.CommonUtils;
 import com.engineer.reader.widget.MultipleStatusView;
-import com.google.gson.internal.$Gson$Types;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,23 +51,11 @@ public abstract class BaseListFragment<T> extends BaseFragment
     protected HashMap<String, String> map = new HashMap<>();
     protected int page = 1;
     protected int pageSize = 30;
-    private Type type;
 
 
     protected OffsetDecoration decoration = new OffsetDecoration();
 
-    public BaseListFragment() {
-        type = getSuperclassTypeParameter(getClass());
-    }
 
-    static Type getSuperclassTypeParameter(Class<?> subclass) {
-        Type superclass = subclass.getGenericSuperclass();
-        if (superclass instanceof Class) {
-            throw new RuntimeException("Missing type parameter.");
-        }
-        ParameterizedType parameterized = (ParameterizedType) superclass;
-        return $Gson$Types.canonicalize(parameterized.getActualTypeArguments()[0]);
-    }
 
     protected void setLoadMoreEnabled(boolean enable) {
         mSwipeToLoadLayout.setLoadMoreEnabled(enable);
@@ -130,7 +115,7 @@ public abstract class BaseListFragment<T> extends BaseFragment
 
     private void getData(final boolean isRefresh) {
 
-        RequestManager.getGankData(tag, getUrl(),getDataType(), getPageCount(), false, new HttpListener() {
+        RequestManager.getGankData(tag, getUrl(),getDataType(), getPageCount(), true, new HttpListener() {
             @Override
             public void onSuccess(Object o) {
                 ArrayList<T> result = (ArrayList<T>) o;

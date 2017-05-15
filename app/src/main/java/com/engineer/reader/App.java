@@ -3,6 +3,7 @@ package com.engineer.reader;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.stetho.Stetho;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 
@@ -23,7 +24,8 @@ public class App extends Application {
                 .methodCount(2)
                 .hideThreadInfo()
                 .logLevel(BuildConfig.DEBUG ? LogLevel.FULL : LogLevel.NONE);
-
+        // 可视化查看数据库 'chrome://inspect'
+        Stetho.initializeWithDefaults(this);
     }
 
     public static Context getContext() {

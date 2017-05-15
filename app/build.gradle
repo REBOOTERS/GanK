@@ -64,4 +64,7 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.android.support.constraint:constraint-layout:+'
+
+    // "chrome://inspect" 可视化查看sqlite 数据库
+    debugCompile 'com.facebook.stetho:stetho:1.4.2'
 }
