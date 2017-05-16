@@ -8,9 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
-    public static final String DBNAME = "djk";
+    public static final String DBNAME = "reader";
     public static final int version = 1;
-    public static final String CACHE = "cache";
+    public static final String CACHE = "gank_cache";
     public static final String ID = "_id";
     public static final String URL = "url";
     public static final String DATA = "data";
@@ -24,8 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE IF NOT EXISTS "
                 + CACHE + " ("
-                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + URL + " TEXT, "
+                + URL + " TEXT PRIMARY KEY, "
                 + TIME + " TEXT, "
                 + DATA + " TEXT)";
         db.execSQL(sql);

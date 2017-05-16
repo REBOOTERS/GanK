@@ -20,20 +20,29 @@ public class RequestManager {
         final DBManager dbManager = new DBManager();
 
         if (isCache) {
-            //读取缓存数据
-            String data = dbManager.getData(url);
-            if (!"".equals(data)) {
-                //解析json数据并返回成功回调
-                Gson mGson = new Gson();
-                List<GanHuo> mGanHuos = mGson.fromJson(data, new TypeToken<List<GanHuo>>() {}.getType());
-                listener.onSuccess(mGanHuos);
+
+            if (!dbManager.isOverTime(url)) {
+                //读取缓存数据
+                String data = dbManager.getCache(url);
+                if (!"".equals(data)) {
+                    //解析json数据并返回成功回调
+                    Gson mGson = new Gson();
+                    List<GanHuo> mGanHuos = mGson.fromJson(data, new TypeToken<List<GanHuo>>() {
+                    }.getType());
+                    listener.onSuccess(mGanHuos);
+                    return;
+                }
+            } else {
+                dbManager.delCache(url);
             }
+
+
         }
 
-        if (!NetworkUtils.isConnectedByState(App.getContext())) {
-            listener.onFailure(5, "网络开小差了！！");
-            return;
-        }
+//        if (!NetworkUtils.isConnectedByState(App.getContext())) {
+//            listener.onFailure(5, "网络开小差了！！");
+//            return;
+//        }
         if (!NetworkUtils.isNetAvailable(App.getContext())) {
             listener.onFailure(5, "当前网络不可用！！");
             return;
