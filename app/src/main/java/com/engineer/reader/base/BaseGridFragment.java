@@ -2,8 +2,8 @@ package com.engineer.reader.base;
 
 
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
@@ -72,7 +72,7 @@ public abstract class BaseGridFragment<T> extends BaseFragment implements OnRefr
 
     public abstract int getItemLayout();
 
-    public abstract void fillValue(ViewHolder holder, T t, int position);
+    public abstract void fillValue(ViewHolder holder, List<T> t, int position);
 
     protected abstract String getUrl();
     protected abstract String getDataType();
@@ -101,14 +101,10 @@ public abstract class BaseGridFragment<T> extends BaseFragment implements OnRefr
         commonAdapter = new CommonAdapter<T>(getActivity(), getItemLayout(), list) {
             @Override
             public void convert(ViewHolder holder, T t, int position) {
-                fillValue(holder, t, position);
+                fillValue(holder, list, position);
             }
         };
-        StaggeredGridLayoutManager mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-//        mStaggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
-        //fix issue #52 https://github.com/codeestX/GeekNews/issues/52
-        mStaggeredGridLayoutManager.setItemPrefetchEnabled(false);
-        mRecyclerView.setLayoutManager(mStaggeredGridLayoutManager);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         mRecyclerView.setHasFixedSize(false);
         headerAndFooterWrapper = new HeaderAndFooterWrapper(commonAdapter);
         mRecyclerView.setAdapter(headerAndFooterWrapper);

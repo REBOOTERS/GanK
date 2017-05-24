@@ -39,10 +39,6 @@ public class RequestManager {
 
         }
 
-//        if (!NetworkUtils.isConnectedByState(App.getContext())) {
-//            listener.onFailure(5, "网络开小差了！！");
-//            return;
-//        }
         if (!NetworkUtils.isNetAvailable(App.getContext())) {
             listener.onFailure(5, "当前网络不可用！！");
             return;
@@ -50,7 +46,7 @@ public class RequestManager {
 
 
         GankService mGankService = GenServiceUtil.createService(GankService.class);
-        retrofit2.Call<GanHuoShell> mCall = mGankService.getlist(type, "10", pageCount);
+        retrofit2.Call<GanHuoShell> mCall = mGankService.getlist(type, "30", pageCount);
         mCall.enqueue(new retrofit2.Callback<GanHuoShell>() {
             @Override
             public void onResponse(retrofit2.Call<GanHuoShell> call, retrofit2.Response<GanHuoShell> response) {

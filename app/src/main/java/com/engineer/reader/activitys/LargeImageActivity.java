@@ -7,8 +7,10 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.engineer.reader.R;
 import com.engineer.reader.base.BaseActivity;
+import com.engineer.reader.db.ImgCacheManager;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,7 +31,11 @@ public class LargeImageActivity extends BaseActivity {
 
         if (getIntent() != null) {
             String pic = getIntent().getStringExtra("picUrl");
-            Glide.with(this).load(pic).into(mImage);
+            String picPath = ImgCacheManager.createFile(this, pic).getAbsolutePath();
+            Glide.with(this)
+                    .load(picPath)
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .into(mImage);
         }
     }
 

@@ -22,7 +22,6 @@ import okio.BufferedSource;
  */
 
 public class LogInterceptor implements Interceptor {
-    public static final String TAG = "LogInterceptor.java";
 
     @Override
     public Response intercept(Chain chain) throws IOException {

@@ -16,6 +16,8 @@ import com.engineer.reader.activitys.LargeImageActivity;
 import com.engineer.reader.base.BaseListFragment;
 import com.engineer.reader.beans.GanHuo;
 import com.engineer.reader.common.recyclerview.base.ViewHolder;
+import com.engineer.reader.db.ImgCacheIntentService;
+import com.engineer.reader.db.ImgCacheManager;
 import com.engineer.reader.utils.CommonUtils;
 
 /**
@@ -56,6 +58,13 @@ public class CommonFragment extends BaseListFragment<GanHuo> {
         ImageView imageView = holder.getView(R.id.image);
         if (ganHuo.getImages() != null && ganHuo.getImages().size() > 0) {
             if (!TextUtils.isEmpty(ganHuo.getImages().get(0))) {
+                //
+                String filename = ganHuo.getImages().get(0);
+                if(!ImgCacheManager.isFileExist(getContext(),filename)){
+                    ImgCacheIntentService.startActionBaz(getContext(),filename,"");
+                }
+
+
                 imageView.setVisibility(View.VISIBLE);
                 Glide.with(this).load(ganHuo.getImages().get(0)).into(imageView);
                 imageView.setOnClickListener(new View.OnClickListener() {

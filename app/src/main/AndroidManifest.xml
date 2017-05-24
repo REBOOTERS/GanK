@@ -33,6 +33,17 @@
         </activity>
         <activity android:name=".activitys.LargeImageActivity">
         </activity>
+
+        <service
+            android:name=".db.ImgCacheIntentService"
+            android:exported="false">
+        </service>
+
+        <activity
+            android:name=".activitys.GalleryActivity"
+            android:label="@string/title_activity_gallery"
+            android:theme="@style/GreenTheme">
+        </activity>
     </application>
 
 </manifest>
